@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+
+<h2>Admin page</h2>
+<br/>
+<a href="/admin/users">List users</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/user">User</a>
+<div th:insert="~{/user :: logout}"></div>
+</body>
+</html>
