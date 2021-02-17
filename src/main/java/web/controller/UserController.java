@@ -1,5 +1,6 @@
 package web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,6 +10,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import web.dao.UserDao;
+import web.model.User;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,6 +21,13 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController {
 
+	private UserDao userDao;
+
+	@Autowired
+	public UserController(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginPage() {
         return "login";
@@ -26,9 +36,8 @@ public class UserController {
     @GetMapping("user")
 	public String userPage(Model model) {
 		Authentication a = SecurityContextHolder.getContext().getAuthentication();
-		Collection<? extends GrantedAuthority> authorities = a.getAuthorities();
-		model.addAttribute("name", a.getName());
-		model.addAttribute("roles", authorities);
+		User authUser = userDao.getUserByName(a.getName());
+		model.addAttribute("authUser", authUser);
 		return "user";
 	}
 
