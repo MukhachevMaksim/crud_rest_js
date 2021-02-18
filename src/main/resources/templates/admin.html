@@ -14,7 +14,7 @@
 <div th:fragment="navbar">
     <nav class="navbar navbar-dark bg-dark">
         <div class="navbar-brand text-white">
-            <b th:text="${authUser.getName()}"></b> with roles:
+            <b th:text="${authUser.getEmail()}"></b> with roles:
             <th:block th:each="role : ${authUser.getRoles()}">
                 <th:block th:text="${role.getRole()}"> </th:block>
             </th:block>

@@ -56,10 +56,16 @@ public class AdminController {
     @PatchMapping(value = "/{id}")
     public String update(@PathVariable("id") Long id,
                          @RequestParam("select") String[] select,
-                         @RequestParam("editName") String editName,
+                         @RequestParam("editFirstName") String editFirstName,
+                         @RequestParam("editLastName") String editLastName,
+                         @RequestParam("editAge") Long editAge,
+                         @RequestParam("editEmail") String editEmail,
                          @RequestParam("editPassword") String editPassword) {
         User editUser = new User();
-        editUser.setName(editName);
+        editUser.setFirstName(editFirstName);
+        editUser.setLastName(editLastName);
+        editUser.setAge(editAge);
+        editUser.setEmail(editEmail);
         editUser.setPassword(editPassword);
         Set<Role> roles = Arrays.stream(select).map(Long::valueOf)
                 .map(x -> roleService.getRoleById(x))

@@ -27,17 +27,21 @@
                 <table class="table">
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Password</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Email</th>
                         <th>Role</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
 
                     <tr th:each="person : ${listUsers}">
-                        <td th:utext="${person.getId()}">Id</td>
-                        <td th:utext="${person.getName()}">Name</td>
-                        <td th:utext="${person.getPassword()}">Password</td>
+                        <td th:utext="${person.getId()}">ID</td>
+                        <td th:utext="${person.getFirstName()}">First Name</td>
+                        <td th:utext="${person.getLastName()}">Last Name</td>
+                        <td th:utext="${person.getAge()}">Age</td>
+                        <td th:utext="${person.getEmail()}">Email</td>
                         <td>
                             <th:block th:each="role : ${person.getRoles()}">
                                 <th:block th:utext="${role.getRole()} + ';'">&nbsp;</th:block>
@@ -67,8 +71,31 @@
                                                     </div>
                                                     <div class="form-group row d-flex justify-content-lg-center">
                                                         <div class="col-xs-2">
-                                                            <label th:attr="for='name' + ${person.getId()}">Name</label>
-                                                            <input type="text" th:value="${person.getName()}" name="editName" class="form-control" th:attr="id='name' + ${person.getId()}" placeholder="Name">
+                                                            <label th:attr="for='first_name' + ${person.getId()}">First name</label>
+                                                            <input type="text" th:value="${person.getFirstName()}" name="editFirstName" class="form-control" th:attr="id='first_name' + ${person.getId()}" placeholder="First name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row d-flex justify-content-lg-center">
+                                                        <div class="col-xs-2">
+                                                            <label th:attr="for='last_name' + ${person.getId()}">Last name</label>
+                                                            <input type="text" th:value="${person.getLastName()}" name="editLastName" class="form-control" th:attr="id='last_name' + ${person.getId()}" placeholder="Last name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row d-flex justify-content-lg-center">
+                                                        <div class="col-xs-2">
+                                                            <label th:attr="for='age' + ${person.getId()}">Age</label>
+<!--                                                            <select th:value="${person.getAge()}" th:attr="id='age' + ${person.getId()}" name="editAge" class="form-control">-->
+<!--                                                                <option th:each="i : ${#numbers.sequence(0, 140)}" th:value="${i}"-->
+<!--                                                                        th:text="${i}" th:selected="${person.getAge() == i}">-->
+<!--                                                                </option>-->
+<!--                                                            </select>-->
+                                                            <input type="text" th:value="${person.getAge()}" name="editAge" class="form-control" th:attr="id='age' + ${person.getId()}" placeholder="Age">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row d-flex justify-content-lg-center">
+                                                        <div class="col-xs-2">
+                                                            <label th:attr="for='email' + ${person.getId()}">Email</label>
+                                                            <input type="text" th:value="${person.getEmail()}" name="editEmail" class="form-control" th:attr="id='email' + ${person.getId()}" placeholder="Email">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row d-flex justify-content-lg-center">
@@ -122,12 +149,20 @@
                                                         <input type="text" class="form-control" id="idDel" th:value="${person.getId()}" disabled>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="nameDel">Name</label>
-                                                        <input type="text" th:value="${person.getName()}" class="form-control" id="nameDel" disabled>
+                                                        <label for="firstNameDel">First Name</label>
+                                                        <input type="text" th:value="${person.getFirstName()}" class="form-control" id="firstNameDel" disabled>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="passwordDel">Password</label>
-                                                        <input type="text" th:value="${person.getPassword()}" class="form-control" id="passwordDel" disabled>
+                                                        <label for="lastNameDel">Last name</label>
+                                                        <input type="text" th:value="${person.getLastName()}" class="form-control" id="lastNameDel" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="ageDel">Age</label>
+                                                        <input type="text" th:value="${person.getAge()}" class="form-control" id="ageDel" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="emailDel">Email</label>
+                                                        <input type="text" th:value="${person.getEmail()}" class="form-control" id="emailDel" disabled>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="roleDel">Role</label><br>

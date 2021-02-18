@@ -19,10 +19,10 @@ public class UserDaoImpl implements UserDao {
     private RoleDao roleDao;
 
     @Override
-    public User getUserByName(String name) {
+    public User getUserByName(String email) {
         TypedQuery<User> query = entityManager.createQuery(
-                "SELECT u FROM User u WHERE u.name = :username", User.class);
-        return query.setParameter("username", name).getSingleResult();
+                "SELECT u FROM User u WHERE u.email = :userEmail", User.class);
+        return query.setParameter("userEmail", email).getSingleResult();
     }
 
     @Override
@@ -48,7 +48,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void update(Long id, User user) {
         User previousUser = entityManager.find(User.class, id);
-        previousUser.setName(user.getName());
+        previousUser.setFirstName(user.getFirstName());
+        previousUser.setLastName(user.getLastName());
+        previousUser.setAge(user.getAge());
+        previousUser.setEmail(user.getEmail());
         previousUser.setPassword(user.getPassword());
         previousUser.setRoles(user.getRoles());
         entityManager.merge(previousUser);
