@@ -34,7 +34,7 @@
                         <th>Delete</th>
                     </tr>
 
-                    <tr th:each="person : ${users}">
+                    <tr th:each="person : ${listUsers}">
                         <td th:utext="${person.getId()}">Id</td>
                         <td th:utext="${person.getName()}">Name</td>
                         <td th:utext="${person.getPassword()}">Password</td>
@@ -57,7 +57,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form" id="editForm" th:method="PATCH" th:action="@{/admin/users/{id}(id=${person.getId()})}">
+                                            <form class="form" id="editForm" th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
                                                 <div class="container text-center">
                                                     <div class="form-group row d-flex justify-content-lg-center">
                                                         <div class="col-xs-2">
@@ -81,7 +81,7 @@
                                                         <div class="col-xs-2">
                                                             <label th:attr="for='role' + ${person.getId()}">Role</label><br>
                                                             <select class="custom-select" multiple size="2" name="select" aria-label="multiple select" th:attr="id='role' + ${person.getId()}">
-                                                                <option th:each="role : ${roleList}"
+                                                                <option th:each="role : ${listRoles}"
                                                                         th:value="${role.getId()}"
                                                                         th:text="${role.getRole()}"
                                                                         th:selected="${person.roles.contains(role)}">
@@ -132,7 +132,7 @@
                                                     <div class="form-group">
                                                         <label for="roleDel">Role</label><br>
                                                         <select class="custom-select" multiple size="2" name="select" aria-label="multiple select" id="roleDel" disabled>
-                                                            <option th:each="role : ${roleList}"
+                                                            <option th:each="role : ${listRoles}"
                                                                     th:value="${role.getId()}"
                                                                     th:text="${role.getRole()}"
                                                                     th:selected="${person.roles.contains(role)}">
@@ -144,7 +144,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <form class="form" th:method="DELETE" th:action="@{/admin/users/{id}(id=${person.getId()})}">
+                                            <form class="form" th:method="DELETE" th:action="@{/admin/{id}(id=${person.getId()})}">
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </div>

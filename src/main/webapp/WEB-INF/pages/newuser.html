@@ -19,7 +19,7 @@
                 Add new user
             </div>
             <div class="card-body text-center font-weight-bold d-flex justify-content-lg-center">
-                <form th:method="POST" th:action="@{/admin/users}" th:object="${user}">
+                <form th:method="POST" th:action="@{/admin}" th:object="${newUser}">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="role">Role</label><br>
                         <select class="custom-select" multiple size="2" name="select" aria-label="multiple select" id="role">
-                            <option th:each="role : ${roleList}" th:value="${role.getId()}" th:text="${role.getRole()}">
+                            <option th:each="role : ${listRoles}" th:value="${role.getId()}" th:text="${role.getRole()}">
                             </option>
                         </select>
                     </div>

@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div th:insert="~{/bootstrap/navbar :: navbar}"></div>
+<div th:insert="~{/admin :: navbar}"></div>
 
 <div class="container-fluid mt-3">
     <div class="row">
@@ -23,7 +23,7 @@
         <div class="col-md-10 bg-light">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="user">
-                    <div th:insert="~{/bootstrap/userpage :: userpage}"></div>
+                    <div th:insert="~{/infopage :: info}"></div>
                 </div>
             </div>
         </div>
